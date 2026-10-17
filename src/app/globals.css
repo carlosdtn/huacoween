@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-pixelify), system-ui, sans-serif;
+  --font-display: var(--font-silkscreen), var(--font-pixelify), monospace;
+
+  --color-night: #120b1f;
+  --color-ink: #2a1a2e;
+  --color-outline: #3a2318;
+  --color-shadow-ink: #0d0717;
+  --color-pumpkin: #ff7a1a;
+  --color-signal: #ffc107;
+  --color-soft: #f8e9a4;
+  --color-moon: #f9e9ad;
+  --color-blood: #c81d25;
+
+  --animate-flicker: flicker 3s infinite;
+  --animate-bob: bob 2.4s ease-in-out infinite;
+  --animate-blink: blink 4s infinite;
+  --animate-alarm: alarm 1.6s ease-in-out infinite;
+  --animate-twinkle: twinkle 5s ease-in-out infinite;
+  --animate-fog: fog 9s ease-in-out infinite;
+  --animate-rise: rise 0.18s ease-out;
+  --animate-shake: shake 0.35s;
+  --animate-fade-in: fade-in 0.45s ease-out;
+  --animate-appear: appear 0.3s ease-out 0.9s both;
+  --animate-toast: toast 1.8s ease-out forwards;
+  --animate-talk: talk 0.25s ease-in-out infinite;
+
+  @keyframes flicker {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    92% {
+      opacity: 1;
+    }
+    93% {
+      opacity: 0.4;
+    }
+    95% {
+      opacity: 0.9;
+    }
+    96% {
+      opacity: 0.5;
+    }
+  }
+  @keyframes bob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8%);
+    }
+  }
+  @keyframes blink {
+    0%,
+    90%,
+    100% {
+      transform: scaleY(1);
+    }
+    93% {
+      transform: scaleY(0.1);
+    }
+  }
+  @keyframes alarm {
+    0%,
+    100% {
+      opacity: 0.35;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.6;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  @keyframes fog {
+    0%,
+    100% {
+      transform: translateX(-3%);
+      opacity: 0.7;
+    }
+    50% {
+      transform: translateX(3%);
+      opacity: 1;
+    }
+  }
+  @keyframes rise {
+    from {
+      transform: translateY(12%);
+      opacity: 0;
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      filter: brightness(0);
+    }
+  }
+  @keyframes appear {
+    from {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+  @keyframes toast {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -30%);
+    }
+    12%,
+    80% {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -20%);
+    }
+  }
+  @keyframes talk {
+    50% {
+      transform: translateY(-4%) rotate(-2deg);
+    }
+  }
+  @keyframes shake {
+    25% {
+      transform: translateX(-4%);
+    }
+    50% {
+      transform: translateX(4%);
+    }
+    75% {
+      transform: translateX(-2%);
+    }
+  }
+}
+
+.crt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.35) 0 2px,
+    transparent 2px 4px
+  );
+  pointer-events: none;
+}
+
+/* Unlayered, so it wins over Tailwind's layered utilities without !important. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none;
+  }
+}
